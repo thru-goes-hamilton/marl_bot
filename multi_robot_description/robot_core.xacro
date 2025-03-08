@@ -1,0 +1,192 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:include filename= "inertial_macros.xacro"/>
+
+    <material name="white">
+        <color rgba="1 1 1 1"/>
+    </material>
+
+    <material name="green">
+        <color rgba="0.231 0.906 0.624 0.8"/>
+    </material>
+
+    <material name="orange">
+        <color rgba="0.898 0.294 0.071 0.8"/>
+    </material>
+
+    <material name="black">
+        <color rgba="0 0 0 1"/>
+    </material>
+
+    <material name="red">
+        <color rgba="1 0 0 1"/>
+    </material>
+
+    <link name="$(arg namespace)/base_link">    
+    </link>
+
+    <joint name = "$(arg namespace)/chassis_joint" type = "fixed">
+        <parent link = "$(arg namespace)/base_link"/>
+        <child link = "$(arg namespace)/chassis_link"/>
+        <origin xyz = "0 0 0.04"/>
+    </joint>
+
+    <link name = "$(arg namespace)/base_footprint">
+    </link>
+
+    <joint name = "$(arg namespace)/base_footprint_joint" type = "fixed">
+        <parent link = "$(arg namespace)/base_link"/>
+        <child link = "$(arg namespace)/base_footprint"/>
+        <origin xyz = "0 0 0" rpy="0 0 0"/>
+    </joint>
+
+    <link name="$(arg namespace)/chassis_link">
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius = "0.120" length = "0.100"/>
+            </geometry>
+            <material name = "green"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius = "0.120" length = "0.100"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass = "2" length= "0.100" radius = "0.120">
+            <origin xyz = "0 0 0 " rpy = "0 0 0"/>
+        </xacro:inertial_cylinder>
+
+    </link>
+
+    <gazebo reference = "$(arg namespace)/chassis_link">
+        <material>Gazebo/Red</material>
+    </gazebo>
+
+    <joint name= "$(arg namespace)/left_wheel_joint" type = "continuous">
+        <parent link = "$(arg namespace)/base_link"/>
+        <child link = "$(arg namespace)/left_wheel_link"/>
+        <origin xyz = "0 0.1325 0" rpy = "-${pi/2} 0 0"/>    
+        <axis xyz = "0 0 1"/>    
+    </joint>
+
+    <link name = "$(arg namespace)/left_wheel_link">
+
+        <visual>
+            <geometry>
+                <cylinder radius = "0.0325" length = "0.025"/>
+            </geometry>
+            <material name = "black"/>
+        </visual>
+
+        <collision>
+            <geometry>
+                <cylinder radius = "0.0325" length = "0.025"/>
+            </geometry>
+        </collision>
+
+        <xacro:inertial_cylinder mass = "0.029" length= "0.025" radius = "0.0325">
+            <origin xyz = "0 0 0 " rpy = "0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference = "$(arg namespace)/left_wheel_link">
+        <material>Gazebo/Black</material>
+    </gazebo>
+
+    <joint name= "$(arg namespace)/right_wheel_joint" type = "continuous">
+        <parent link = "$(arg namespace)/base_link"/>
+        <child link = "$(arg namespace)/right_wheel_link"/>
+        <origin xyz = "0 -0.1325 0" rpy = "${pi/2} 0 0"/>    
+        <axis xyz = "0 0 -1"/>    
+    </joint>
+
+    <link name = "$(arg namespace)/right_wheel_link">
+        <visual>
+            <geometry>
+                <cylinder radius = "0.0325" length = "0.025"/>
+            </geometry>
+            <material name = "black"/>
+        </visual>
+
+        <collision>
+            <geometry>
+                <cylinder radius = "0.0325" length = "0.025"/>
+            </geometry>
+        </collision>
+
+        <xacro:inertial_cylinder mass = "0.029" length= "0.025" radius = "0.0325">
+            <origin xyz = "0 0 0 " rpy = "0 0 0"/>
+        </xacro:inertial_cylinder>
+
+    </link>
+
+    <gazebo reference = "$(arg namespace)/right_wheel_link">
+        <material>Gazebo/Black</material>
+    </gazebo>
+
+    <joint name = "$(arg namespace)/front_caster_wheel_joint" type = "fixed">
+        <parent link = "$(arg namespace)/base_link"/>
+        <child link = "$(arg namespace)/front_caster_wheel_link"/>
+        <origin xyz = "0.09 0 -0.02125"/>
+    </joint>
+
+    <link name = "$(arg namespace)/front_caster_wheel_link">
+        <visual>
+            <geometry>
+                <cylinder radius = "0.02" length = "0.0225"/>
+            </geometry>
+            <material name = "white"/>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius = "0.02" length = "0.0225"/>
+            </geometry>
+        </collision>
+
+        <xacro:inertial_cylinder mass = "0.025" length= "0.0225" radius = "0.02">
+            <origin xyz = "0 0 0 " rpy = "0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference = "$(arg namespace)/front_caster_wheel_link">
+        <material>Gazebo/Grey</material>
+        <mu1 value="0.001"/>
+        <mu2 value="0.001"/>
+    </gazebo>
+
+    <joint name = "$(arg namespace)/back_caster_wheel_joint" type = "fixed">
+        <parent link = "$(arg namespace)/base_link"/>
+        <child link = "$(arg namespace)/back_caster_wheel_link"/>
+        <origin xyz = "-0.09 0 -0.02125"/>
+    </joint>
+
+    <link name = "$(arg namespace)/back_caster_wheel_link">
+        <visual>
+            <geometry>
+                <cylinder radius = "0.02" length = "0.0225"/>
+            </geometry>
+            <material name = "white"/>
+        </visual>
+
+        <collision>
+            <geometry>
+                <cylinder radius = "0.02" length = "0.0225"/>
+            </geometry>
+        </collision>
+
+        <xacro:inertial_cylinder mass = "0.025" length= "0.0225" radius = "0.02">
+            <origin xyz = "0 0 0 " rpy = "0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference = "$(arg namespace)/back_caster_wheel_link">
+        <material>Gazebo/Grey</material>
+        <mu1 value="0.001"/>
+        <mu2 value="0.001"/>
+    </gazebo>
+
+
+</robot>
