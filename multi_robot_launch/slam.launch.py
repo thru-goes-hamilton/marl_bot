@@ -29,10 +29,10 @@ def generate_launch_description():
         parameters=[
             slam_params_file,
             {'use_sim_time': use_sim_time},
-            {'scan_topic': '/scan'},
+            {'scan_topic': 'scan'},
             {'base_frame': 'base_link'},
             {'odom_frame': 'odom'},
-            {'map_frame': '/map'}  # This is just the frame id; the topic name is separate
+            {'map_frame': 'map'}  # This is just the frame id; the topic name is separate
         ],
         remappings=[
             ('/map', '/marl_bot1/map'),
