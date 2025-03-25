@@ -20,7 +20,6 @@ def generate_launch_description():
         'xacro ', xacro_file,
         ' namespace:=', namespace
     ])
-    # robot_description_config = xacro.process_file(xacro_file, mapping={'namespace':namespace})
 
     # Create a robot_state_publisher node with namespace
     params = {

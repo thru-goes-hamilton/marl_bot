@@ -23,37 +23,37 @@ def generate_launch_description():
     slam_toolbox_robot1 = Node(
         package='slam_toolbox',
         executable='async_slam_toolbox_node',
-        name='slam_toolbox',
+        name='slam_toolbox1',
         namespace='marl_bot1',
         output='screen',
         parameters=[
             slam_params_file,
             {'use_sim_time': use_sim_time},
-            {'scan_topic': 'scan'},
-            {'base_frame': 'base_link'},
-            {'odom_frame': 'odom'},
-            {'map_frame': 'map'}  # This is just the frame id; the topic name is separate
+            {'scan_topic': '/marl_bot1/scan'},  
+            {'base_frame': 'marl_bot1/base_link'},
+            {'odom_frame': 'marl_bot1/odom'},
+            {'map_frame': 'marl_bot1/map'}       # Consistent naming without leading slash
         ],
         remappings=[
             ('/map', '/marl_bot1/map'),
             ('/map_metadata', '/marl_bot1/map_metadata'),
-            ('/map_updates', '/marl_bot1/map_updates')
+            ('/map_updates', '/marl_bot1/map_updates')            
         ]
     )
 
     slam_toolbox_robot2 = Node(
         package='slam_toolbox',
         executable='async_slam_toolbox_node',
-        name='slam_toolbox',
+        name='slam_toolbox2',  # Optional: Consider unique name if needed
         namespace='marl_bot2',
         output='screen',
         parameters=[
             slam_params_file,
             {'use_sim_time': use_sim_time},
-            {'scan_topic': 'scan'},
-            {'base_frame': 'base_link'},
-            {'odom_frame': 'odom'},
-            {'map_frame': 'map'}
+            {'scan_topic': '/marl_bot2/scan'},          # Relative: resolves to /marl_bot2/scan
+            {'base_frame': 'marl_bot2/base_link'},
+            {'odom_frame': 'marl_bot2/odom'},
+            {'map_frame': 'marl_bot2/map'}             # Consistent naming
         ],
         remappings=[
             ('/map', '/marl_bot2/map'),
