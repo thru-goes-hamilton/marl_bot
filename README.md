@@ -1,7 +1,36 @@
-## Robot Package Template
+# MARL Bot Workspace Setup
 
-This is a GitHub template. You can make your own copy by clicking the green "Use this template" button.
+This guide explains how to set up the `marl_bot` repository in a new ROS 2 Humble workspace.
 
-It is recommended that you keep the repo/package name the same, but if you do change it, ensure you do a "Find all" using your IDE (or the built-in GitHub IDE by hitting the `.` key) and rename all instances of `my_bot` to whatever your project's name is.
 
-Note that each directory currently has at least one file in it to ensure that git tracks the files (and, consequently, that a fresh clone has direcctories present for CMake to find). These example files can be removed if required (and the directories can be removed if `CMakeLists.txt` is adjusted accordingly).
+## Installation Steps
+
+Run the following commands to create the necessary directories, clone the repository, move the `debug.sh` script, and execute it.
+
+### 1. Create the workspace and clone the repository
+```bash
+mkdir -p dev_ws/src
+cd dev_ws/src
+git clone https://github.com/your-username/marl_bot.git
+```
+### 2. Move `debug.sh` to the workspace root and make it executable
+```bash
+mv marl_bot/debug.sh ../
+chmod +x ../debug.sh
+```
+### 3. Source ROS 2 and run the debug script
+```bash
+source /opt/ros/humble/setup.bash
+cd ..
+./debug.sh
+```
+### 4. Source marl_bot package after buiding
+```bash
+source install/setup.bash
+```
+
+After running these steps the installation should be complete.
+
+## Launch files
+
+...
