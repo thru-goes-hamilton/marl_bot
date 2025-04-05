@@ -11,19 +11,29 @@ def generate_launch_description():
 
     joy_params = os.path.join(get_package_share_directory('marl_bot'),'config','joystick.yaml')
 
+    # Joy node for Robot 1 with device_id set to 0
     joy_node_1 = Node(
         package='joy',
         executable='joy_node',
         name='joy_node1',
-        parameters=[{'dev': '/dev/input/js0'}, joy_params, {'use_sim_time': use_sim_time}],
+        # parameters=[
+        #     {'ros__parameters': {'device_id': 0, 'dev': '/dev/input/js0', 'use_sim_time': use_sim_time}},
+        #     joy_params
+        # ],
+        parameters=[joy_params, {'use_sim_time': use_sim_time}],
         remappings=[('joy', 'joy1')]
     )
 
+    # Joy node for Robot 2 with device_id set to 1
     joy_node_2 = Node(
         package='joy',
         executable='joy_node',
         name='joy_node2',
-        parameters=[{'dev': '/dev/input/js1'}, joy_params, {'use_sim_time': use_sim_time}],
+        # parameters=[
+        #     {'ros__parameters': {'device_id': 1, 'dev': '/dev/input/js1', 'use_sim_time': use_sim_time}},
+        #     joy_params
+        # ],
+        parameters=[joy_params, {'use_sim_time': use_sim_time}],
         remappings=[('joy', 'joy2')]
     )
 
