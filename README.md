@@ -1,6 +1,6 @@
 # MARL Bot Workspace Setup
 
-This guide explains how to set up the `marl_bot` repository in a new ROS 2 Humble workspace.
+This guide explains how to set up the `marl_bot` package in a new ROS 2 Humble workspace.
 
 
 ## Installation Steps
@@ -31,6 +31,7 @@ source install/setup.bash
 
 After running these steps the installation should be complete.
 
-## Launch files
-
-...
+## Launch file
+```bash
+ros2 launch marl_bot iteration.launch.py
+``` 
