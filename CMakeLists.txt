@@ -33,7 +33,7 @@ if(BUILD_TESTING)
 endif()
 
 install(
-  DIRECTORY config description launch multi_robot_description multi_robot_launch worlds
+  DIRECTORY config description sim_launch multi_robot_description sim_multi_robot_launch worlds
   DESTINATION share/${PROJECT_NAME}
 )
 

@@ -14,14 +14,14 @@ def generate_launch_description():
     # Launch arguments
     world_arg = DeclareLaunchArgument(
         'world',
-        default_value=os.path.join(pkg_marl_bot, 'worlds', 'env1.world'),
+        default_value=os.path.join(pkg_marl_bot, 'worlds', 'env1_1.world'),
         description='Path to the Gazebo world file'
     )
 
     # Include multi robot simulation launch (spawns robots in Gazebo)
     multi_sim_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
-            os.path.join(pkg_marl_bot, 'multi_robot_launch', 'multi_launch_sim.launch.py')
+            os.path.join(pkg_marl_bot, 'sim_multi_robot_launch', 'multi_launch_sim.launch.py')
         ),
         launch_arguments={'world': LaunchConfiguration('world')}.items()
     )
@@ -29,14 +29,14 @@ def generate_launch_description():
     # Include SLAM launch
     slam_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
-            os.path.join(pkg_marl_bot, 'multi_robot_launch', 'slam.launch.py')
+            os.path.join(pkg_marl_bot, 'sim_multi_robot_launch', 'slam.launch.py')
         )
     )
 
     # Include Joystick launch
     joystick_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
-            os.path.join(pkg_marl_bot, 'multi_robot_launch', 'multi_joystick.launch.py')
+            os.path.join(pkg_marl_bot, 'sim_multi_robot_launch', 'multi_joystick.launch.py')
         )
     )
 
