@@ -16,9 +16,9 @@ def generate_launch_description():
         description='Use simulation (Gazebo) clock if true')
     
     # Load the parameter file for SLAM
-    config_dir = os.path.join(get_package_share_directory('marl_bot'), 'config')
+    params_dir = os.path.join(get_package_share_directory('marl_bot'), 'params')
 
-    slam_params_file = os.path.join(config_dir, 'remap_mapper_params_online_async.yaml')
+    slam_params_file = os.path.join(params_dir, 'remap_mapper_params_online_async.yaml')
     
     slam_toolbox_robot1 = Node(
         package='slam_toolbox',

@@ -32,8 +32,9 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
+# Install only your resource directories under share/
 install(
-  DIRECTORY config description sim_launch multi_robot_description sim_multi_robot_launch worlds
+  DIRECTORY config params real_launch sim_launch sim_multi_robot_launch multi_robot_description description worlds
   DESTINATION share/${PROJECT_NAME}
 )
 
