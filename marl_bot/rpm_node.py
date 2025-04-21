@@ -2,7 +2,7 @@
 import rclpy
 from rclpy.node import Node
 from geometry_msgs.msg import Twist
-from std_msgs.msg import Float64MultiArray
+from std_msgs.msg import Int32MultiArray
 
 class CmdVelToRpm(Node):
     def __init__(self):
@@ -27,7 +27,7 @@ class CmdVelToRpm(Node):
 
         # Publisher
         self.rpm_pub = self.create_publisher(
-            Float64MultiArray,
+            Int32MultiArray,
             'rpm',
             qos_profile=10
         )
@@ -37,10 +37,10 @@ class CmdVelToRpm(Node):
         w = msg.angular.z
         v_l = v - self.half_base * w
         v_r = v + self.half_base * w
-        rpm_l = v_l * self.factor
-        rpm_r = v_r * self.factor
+        rpm_l = round(v_l * self.factor)
+        rpm_r = round(v_r * self.factor)
 
-        arr = Float64MultiArray()
+        arr = Int32MultiArray()
         arr.data = [rpm_l, rpm_r]
         self.rpm_pub.publish(arr)
 
