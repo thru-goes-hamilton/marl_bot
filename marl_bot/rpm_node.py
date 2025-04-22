@@ -8,8 +8,8 @@ class CmdVelToRpm(Node):
     def __init__(self):
         super().__init__('cmdvel_to_rpm')
         # Robot parameters (wheel separation L, wheel radius R)
-        self.declare_parameter('wheel_base', 0.5)    # meters
-        self.declare_parameter('wheel_radius', 0.1)  # meters
+        self.declare_parameter('wheel_base', 0.281)    # meters
+        self.declare_parameter('wheel_radius', 0.065)  # meters
         L = self.get_parameter('wheel_base').value
         R = self.get_parameter('wheel_radius').value
 
