@@ -32,6 +32,8 @@ class CmdVelToRpm(Node):
             qos_profile=10
         )
 
+        self.timer = self.create_timer(0.1, self.timer_callback)
+
     def cmdvel_callback(self, msg: Twist):
         v = msg.linear.x
         w = msg.angular.z
