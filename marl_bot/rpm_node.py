@@ -25,7 +25,7 @@ class CmdVelToRpm(Node):
 
         # ─── DEAD-BAND & SPEED MULTIPLIER ──────────────────────────────────────
         # Any nonzero RPM with |RPM|<100 will be bumped to ±100
-        self.deadband_rpm    = 100
+        self.deadband_rpm    = 150
         # Always double the commanded velocities
         self.speed_multiplier = 2.0
 
