@@ -43,14 +43,14 @@ class CmdVelToRpm(Node):
         # Subscribe to cmd_vel
         self.create_subscription(
             Twist,
-            '/marl_bot1/cmd_vel',
+            'cmd_vel',
             self.cmdvel_callback,
             qos_profile=qos
         )
         # Publisher for [left_rpm, right_rpm]
         self.rpm_pub = self.create_publisher(
             Int32MultiArray,
-            '/marl_bot1/rpm',
+            'rpm',
             qos_profile=qos
         )
 

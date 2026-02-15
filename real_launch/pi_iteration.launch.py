@@ -79,4 +79,11 @@ def launch_setup(context, namespace_subst, device_id_subst):
         }.items()
     )
 
+    # # Include SLAM launch
+    # slam_launch = IncludeLaunchDescription(
+    #     PythonLaunchDescriptionSource(
+    #         os.path.join(get_package_share_directory('marl_bot'), 'real_launch', 'slam.launch.py')
+    #     )
+    # )
+
     return [ydlidar, rpm, joystick]
